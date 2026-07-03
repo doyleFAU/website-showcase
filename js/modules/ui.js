@@ -1,8 +1,11 @@
+import { isAllowedPartial, isSafeHashSelector } from "./security.js";
+
 export function initNavigation() {
   document.querySelectorAll("[data-scroll]").forEach((button) => {
     button.addEventListener("click", () => {
-      const target = document.querySelector(button.dataset.scroll);
-      target?.scrollIntoView({ behavior: "smooth", block: "start" });
+      const selector = button.dataset.scroll;
+      if (!isSafeHashSelector(selector)) return;
+      document.querySelector(selector)?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   });
 
@@ -68,7 +71,8 @@ export async function loadPartials() {
   await Promise.all(
     [...slots].map(async (slot) => {
       const url = slot.dataset.partial;
-      const response = await fetch(url);
+      if (!isAllowedPartial(url)) throw new Error(`Blocked partial path: ${url}`);
+      const response = await fetch(url, { credentials: "same-origin" });
       if (!response.ok) throw new Error(`Failed to load partial: ${url}`);
       slot.innerHTML = await response.text();
     })
@@ -78,8 +82,9 @@ export async function loadPartials() {
 export function initHelpSteps() {
   document.querySelectorAll("[data-step]").forEach((button) => {
     button.addEventListener("click", () => {
-      const target = document.querySelector(button.dataset.step);
-      target?.scrollIntoView({ behavior: "smooth", block: "start" });
+      const selector = button.dataset.step;
+      if (!isSafeHashSelector(selector)) return;
+      document.querySelector(selector)?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   });
 }

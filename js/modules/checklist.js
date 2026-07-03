@@ -1,4 +1,5 @@
 import { FEATURE_ITEMS, THEME_OPTIONS, FONT_OPTIONS, THEME_LABELS, FONT_LABELS } from "../config/features.js";
+import { escapeHtml } from "./security.js";
 
 const FONT_SAMPLES = {
   modern: { heading: "Clean and trustworthy", body: "Great for local businesses and services." },
@@ -222,16 +223,16 @@ export function initMyList(getState, getSelectedFeatures) {
     const features = getSelectedFeatures();
     const featureHtml =
       features.length > 0
-        ? features.map((item) => `<li>${item.label}</li>`).join("")
+        ? features.map((item) => `<li>${escapeHtml(item.label)}</li>`).join("")
         : "<li>Nothing checked yet — browse the add-ons section below.</li>";
 
     panel.innerHTML = `
       <h3>Your list so far</h3>
       <p class="my-list-intro">This is what you have chosen. You can share this list when you talk to whoever is building your site.</p>
       <dl class="my-list-summary">
-        <div><dt>Colors</dt><dd>${THEME_LABELS[state.theme] ?? state.theme}</dd></div>
-        <div><dt>Fonts</dt><dd>${FONT_LABELS[state.font] ?? state.font}</dd></div>
-        <div><dt>Look</dt><dd>${state.mode === "dark" ? "Dark background" : "Light background"}</dd></div>
+        <div><dt>Colors</dt><dd>${escapeHtml(THEME_LABELS[state.theme] ?? state.theme)}</dd></div>
+        <div><dt>Fonts</dt><dd>${escapeHtml(FONT_LABELS[state.font] ?? state.font)}</dd></div>
+        <div><dt>Look</dt><dd>${escapeHtml(state.mode === "dark" ? "Dark background" : "Light background")}</dd></div>
       </dl>
       <p class="my-list-label">Add-ons you want:</p>
       <ul class="my-list-features">${featureHtml}</ul>
@@ -260,13 +261,16 @@ function printList(getState, getSelectedFeatures) {
     ...features.map((item) => `- ${item.label}`),
   ];
 
-  const printWindow = window.open("", "_blank", "width=640,height=720");
+  const printWindow = window.open("", "_blank", "noopener,noreferrer,width=640,height=720");
   if (!printWindow) {
     showToast("Please allow pop-ups to print your list.");
     return;
   }
 
-  printWindow.document.write(`<pre style="font-family: sans-serif; padding: 24px; line-height: 1.6;">${lines.join("\n")}</pre>`);
+  const pre = printWindow.document.createElement("pre");
+  pre.style.cssText = "font-family: sans-serif; padding: 24px; line-height: 1.6; white-space: pre-wrap;";
+  pre.textContent = lines.join("\n");
+  printWindow.document.body.appendChild(pre);
   printWindow.document.close();
   printWindow.focus();
   printWindow.print();

@@ -1,3 +1,6 @@
+import { sanitizeState } from "./security.js";
+import { DEFAULT_STATE } from "../config/state.js";
+
 export function applySandboxState(state) {
   const root = document.documentElement;
 
@@ -13,15 +16,18 @@ export function applySandboxState(state) {
 export function readControls(state) {
   const get = (id) => document.getElementById(id);
 
-  return {
-    theme: get("theme-select")?.value ?? state.theme,
-    font: get("font-select")?.value ?? state.font,
-    radius: get("radius-select")?.value ?? state.radius,
-    mode: get("mode-select")?.value ?? state.mode,
-    shadows: get("toggle-shadows")?.checked ?? state.shadows,
-    animations: get("toggle-animations")?.checked ?? state.animations,
-    gradients: get("toggle-gradients")?.checked ?? state.gradients,
-  };
+  return sanitizeState(
+    {
+      theme: get("theme-select")?.value ?? state.theme,
+      font: get("font-select")?.value ?? state.font,
+      radius: get("radius-select")?.value ?? state.radius,
+      mode: get("mode-select")?.value ?? state.mode,
+      shadows: get("toggle-shadows")?.checked ?? state.shadows,
+      animations: get("toggle-animations")?.checked ?? state.animations,
+      gradients: get("toggle-gradients")?.checked ?? state.gradients,
+    },
+    DEFAULT_STATE
+  );
 }
 
 export function syncControls(state) {
@@ -44,7 +50,7 @@ export function syncControls(state) {
 export function loadState(defaultState, storageKey) {
   try {
     const saved = JSON.parse(localStorage.getItem(storageKey) || "null");
-    return saved ? { ...defaultState, ...saved } : { ...defaultState };
+    return saved ? sanitizeState({ ...defaultState, ...saved }, defaultState) : { ...defaultState };
   } catch {
     return { ...defaultState };
   }
