@@ -1,0 +1,498 @@
+.preset-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-1);
+}
+
+.preset-tab {
+  border: 1px solid color-mix(in srgb, var(--color-primary) 25%, var(--color-border));
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-radius: 999px;
+  padding: 0.55rem 1rem;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), transform var(--transition);
+}
+
+.preset-tab:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+.preset-tab.is-active {
+  background: linear-gradient(135deg, var(--color-primary), color-mix(in srgb, var(--color-accent-2) 65%, var(--color-primary)));
+  color: #fff;
+  border-color: transparent;
+}
+
+.preset-panels {
+  display: grid;
+}
+
+.preset-panel {
+  grid-area: 1 / 1;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0.5rem);
+  transition: opacity var(--transition), transform var(--transition), visibility var(--transition);
+}
+
+.preset-panel.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.preset-browser {
+  border: 1px solid color-mix(in srgb, var(--color-primary) 20%, var(--color-border));
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-lg);
+}
+
+.preset-browser-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface-2);
+}
+
+.preset-browser-bar span {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-text-muted) 35%, var(--color-border));
+}
+
+.preset-browser-bar p {
+  margin: 0 0 0 auto;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.preset-home {
+  position: relative;
+  overflow: hidden;
+  min-height: 28rem;
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.preset-aurora-host,
+.preset-effect-host {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.galaxy-container,
+.grainient-container,
+.darkveil-container,
+.aurora-container {
+  width: 100%;
+  height: 100%;
+}
+
+.darkveil-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.preset-nav,
+.preset-hero,
+.preset-features,
+.preset-portfolio {
+  position: relative;
+  z-index: 1;
+}
+
+.preset-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.preset-logo {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.preset-nav nav {
+  display: flex;
+  gap: var(--space-3);
+  margin-right: auto;
+}
+
+.preset-nav a {
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+.preset-nav a:hover {
+  opacity: 1;
+}
+
+.preset-kicker {
+  margin: 0 0 var(--space-2);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.preset-hero h3 {
+  margin-bottom: var(--space-3);
+  font-size: clamp(1.35rem, 2.5vw, 2rem);
+  max-width: 18ch;
+}
+
+.preset-lead {
+  margin: 0 0 var(--space-4);
+  max-width: 42ch;
+  opacity: 0.9;
+}
+
+.preset-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.preset-btn {
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  padding: 0.65rem 1rem;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.preset-btn--primary {
+  background: #fff;
+  color: #111827;
+}
+
+.preset-btn--ghost {
+  background: transparent;
+  border-color: color-mix(in srgb, currentColor 35%, transparent);
+  color: inherit;
+}
+
+.preset-features {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.preset-feature {
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+  background: color-mix(in srgb, #fff 6%, transparent);
+}
+
+.preset-feature strong {
+  display: block;
+  margin-bottom: var(--space-1);
+}
+
+.preset-feature span {
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+.preset-caption {
+  margin-top: var(--space-3);
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+/* Modern Tech preset */
+.preset-home--tech {
+  background: #05060f;
+  color: #f8fafc;
+  font-family: "Space Grotesk", "Inter", system-ui, sans-serif;
+}
+
+.preset-home--tech .preset-nav a {
+  color: #e2e8f0;
+}
+
+.preset-home--tech .preset-kicker {
+  color: #a5b4fc;
+}
+
+.preset-home--tech .preset-btn--primary {
+  background: linear-gradient(135deg, #7cff67, #5227ff);
+  color: #05060f;
+}
+
+.preset-home--tech .preset-btn--ghost {
+  color: #e2e8f0;
+}
+
+/* Local Business preset */
+.preset-home--local {
+  background: linear-gradient(180deg, #fff7ed, #fffbeb);
+  color: #431407;
+  font-family: "Fraunces", Georgia, serif;
+}
+
+.preset-home--local .preset-nav a {
+  color: #9a3412;
+}
+
+.preset-home--local .preset-kicker {
+  color: #c2410c;
+}
+
+.preset-home--local .preset-btn--primary {
+  background: #ea580c;
+  color: #fff;
+}
+
+.preset-home--local .preset-lead,
+.preset-home--local .preset-nav nav {
+  font-family: "Source Serif 4", Georgia, serif;
+}
+
+.preset-hero--split {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+.preset-photo {
+  min-height: 11rem;
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(135deg, rgba(251, 146, 60, 0.35), rgba(234, 88, 12, 0.15)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpath fill='%23fdba74' d='M0 0h120v120H0z'/%3E%3Ccircle cx='60' cy='48' r='22' fill='%23fb923c'/%3E%3C/svg%3E");
+  background-size: cover;
+  border: 1px solid rgba(234, 88, 12, 0.2);
+}
+
+.preset-home--local .preset-feature {
+  background: rgba(255, 255, 255, 0.65);
+  border-color: rgba(234, 88, 12, 0.15);
+}
+
+/* Creative Studio preset */
+.preset-home--creative {
+  background: #111827;
+  color: #f9fafb;
+  font-family: "Oswald", "Archivo", system-ui, sans-serif;
+}
+
+.preset-home--creative .preset-nav a {
+  color: #d1d5db;
+}
+
+.preset-home--creative .preset-kicker {
+  color: #f472b6;
+}
+
+.preset-home--creative .preset-btn--primary {
+  background: #f472b6;
+  color: #111827;
+}
+
+.preset-home--creative .preset-lead {
+  font-family: "Archivo", system-ui, sans-serif;
+  font-weight: 400;
+}
+
+.preset-portfolio {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.preset-shot {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.ps-1 { background: linear-gradient(160deg, #f472b6, #6366f1); }
+.ps-2 { background: linear-gradient(160deg, #22d3ee, #2563eb); }
+.ps-3 { background: linear-gradient(160deg, #fbbf24, #ef4444); }
+.ps-4 { background: linear-gradient(160deg, #34d399, #059669); }
+
+/* Luxury Real Estate preset */
+.preset-home--luxury {
+  background: #070b16;
+  color: #f8fafc;
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+.preset-home--luxury .preset-nav a {
+  color: #cbd5e1;
+  font-family: "Montserrat", system-ui, sans-serif;
+}
+
+.preset-home--luxury .preset-kicker {
+  color: #fcd34d;
+  font-family: "Montserrat", system-ui, sans-serif;
+}
+
+.preset-home--luxury .preset-lead,
+.preset-home--luxury .preset-logo {
+  font-family: "Montserrat", system-ui, sans-serif;
+}
+
+.preset-home--luxury .preset-btn--primary {
+  background: linear-gradient(135deg, #fcd34d, #f59e0b);
+  color: #111827;
+}
+
+.preset-home--luxury .preset-btn--ghost {
+  color: #e2e8f0;
+}
+
+.preset-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.preset-stats div {
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(252, 211, 77, 0.2);
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(8px);
+}
+
+.preset-stats strong {
+  display: block;
+  font-size: 1.5rem;
+  margin-bottom: var(--space-1);
+  font-family: "Montserrat", system-ui, sans-serif;
+}
+
+.preset-stats span {
+  font-size: 0.85rem;
+  opacity: 0.85;
+  font-family: "Montserrat", system-ui, sans-serif;
+}
+
+/* Wellness & Spa preset */
+.preset-home--wellness {
+  background: #fdf2f8;
+  color: #312e81;
+  font-family: "Nunito", system-ui, sans-serif;
+}
+
+.preset-home--wellness .preset-nav a {
+  color: #5b21b6;
+}
+
+.preset-home--wellness .preset-kicker {
+  color: #be185d;
+}
+
+.preset-home--wellness .preset-btn--primary {
+  background: #7c3aed;
+  color: #fff;
+}
+
+.preset-home--wellness .preset-feature {
+  background: rgba(255, 255, 255, 0.72);
+  border-color: rgba(124, 58, 237, 0.15);
+  backdrop-filter: blur(8px);
+}
+
+/* Law & Finance preset */
+.preset-home--professional {
+  background: #0f172a;
+  color: #f8fafc;
+  font-family: "Merriweather", Georgia, serif;
+}
+
+.preset-home--professional .preset-nav a,
+.preset-home--professional .preset-lead,
+.preset-home--professional .preset-trust {
+  font-family: "Source Sans 3", system-ui, sans-serif;
+}
+
+.preset-home--professional .preset-logo {
+  font-family: "Merriweather", Georgia, serif;
+}
+
+.preset-home--professional .preset-nav a {
+  color: #cbd5e1;
+}
+
+.preset-home--professional .preset-kicker {
+  color: #93c5fd;
+}
+
+.preset-home--professional .preset-btn--primary {
+  background: #2563eb;
+  color: #fff;
+}
+
+.preset-home--professional .preset-btn--ghost {
+  color: #e2e8f0;
+}
+
+.preset-trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.preset-trust span {
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: rgba(15, 23, 42, 0.55);
+  font-size: 0.8rem;
+  font-weight: 600;
+  backdrop-filter: blur(8px);
+}
+
+@media (max-width: 900px) {
+  .preset-features,
+  .preset-portfolio,
+  .preset-hero--split,
+  .preset-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .preset-nav nav {
+    width: 100%;
+    order: 3;
+  }
+
+  .preset-home {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .preset-nav .preset-btn--primary {
+    width: 100%;
+  }
+}

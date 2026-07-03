@@ -1,0 +1,154 @@
+.sandbox-panel {
+  min-width: 0;
+}
+
+.sandbox-sticky {
+  position: sticky;
+  top: calc(var(--header-height) + var(--space-4));
+  background:
+    linear-gradient(160deg, color-mix(in srgb, var(--color-primary) 8%, var(--color-surface)), var(--color-surface));
+  border: 2px solid transparent;
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-lg);
+  background-clip: padding-box;
+  isolation: isolate;
+}
+
+.sandbox-sticky::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent-2), var(--color-accent-3));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.sandbox-sticky h2 {
+  font-size: 1.35rem;
+  color: var(--color-primary);
+}
+
+.sandbox-note {
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: var(--space-5);
+}
+
+.control-group {
+  margin-bottom: var(--space-5);
+}
+
+.control-group label,
+.control-label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: var(--space-3);
+}
+
+.pick-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.pick-grid-fonts {
+  grid-template-columns: 1fr;
+}
+
+.pick-card {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  transition: border-color var(--transition), background var(--transition), transform var(--transition);
+}
+
+.pick-card strong {
+  font-size: 0.95rem;
+}
+
+.pick-card span:last-child {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.pick-card.is-active {
+  border-color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 10%, var(--color-surface));
+  transform: scale(1.02);
+  box-shadow: var(--shadow-sm);
+}
+
+.pick-card:hover {
+  border-color: var(--color-accent-2);
+}
+
+.pick-grid-scroll {
+  max-height: 16rem;
+  overflow-y: auto;
+  padding-right: 0.25rem;
+  scrollbar-width: thin;
+}
+
+.option-count {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  background: color-mix(in srgb, var(--color-primary) 10%, var(--color-surface));
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  margin-left: 0.35rem;
+}
+
+.pick-dot {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  margin-bottom: var(--space-1);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  box-shadow: var(--shadow-sm);
+}
+
+.mode-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+}
+
+.mode-btn {
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.mode-btn.is-active {
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent-2));
+  color: #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+@media (max-width: 960px) {
+  .sandbox-sticky {
+    position: static;
+  }
+}

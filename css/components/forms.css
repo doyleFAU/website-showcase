@@ -1,0 +1,89 @@
+.demo-form {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 28rem;
+}
+
+.demo-form label {
+  display: grid;
+  gap: var(--space-2);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.demo-form input,
+.demo-form textarea,
+.control-group select {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.65rem 0.75rem;
+  font: inherit;
+  color: var(--color-text);
+  background: var(--color-surface);
+}
+
+.demo-form input:focus,
+.demo-form textarea:focus,
+.control-group select:focus {
+  outline: 2px solid color-mix(in srgb, var(--color-primary) 45%, transparent);
+  outline-offset: 1px;
+}
+
+.demo-form .checkbox {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 500;
+}
+
+.demo-form .checkbox input {
+  width: auto;
+}
+
+.checklist {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 15%, var(--color-border));
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--color-primary) 5%, var(--color-surface)), var(--color-surface-2));
+  cursor: pointer;
+  transition: border-color var(--transition), transform var(--transition);
+}
+
+.checklist-item:has(input:checked) {
+  border-color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 12%, var(--color-surface));
+  box-shadow: var(--shadow-sm);
+}
+
+.checklist-item input {
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: 0.15rem;
+  flex-shrink: 0;
+}
+
+.checklist-item span {
+  line-height: 1.45;
+}
+
+.checklist label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  cursor: pointer;
+}
+
+.checklist-summary {
+  margin-top: var(--space-4);
+  font-weight: 600;
+  color: var(--color-primary);
+}

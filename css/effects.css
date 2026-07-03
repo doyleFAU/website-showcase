@@ -1,0 +1,107 @@
+body {
+  background:
+    radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--color-primary) 16%, transparent), transparent 42%),
+    radial-gradient(circle at 100% 8%, color-mix(in srgb, var(--color-accent-2) 14%, transparent), transparent 38%),
+    radial-gradient(circle at 50% 100%, color-mix(in srgb, var(--color-accent-3) 12%, transparent), transparent 45%),
+    var(--color-bg);
+  background-attachment: fixed;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.5;
+  background-image:
+    radial-gradient(circle at 20% 30%, color-mix(in srgb, var(--color-primary) 8%, transparent) 0 2px, transparent 2px),
+    radial-gradient(circle at 80% 20%, color-mix(in srgb, var(--color-accent-2) 8%, transparent) 0 2px, transparent 2px),
+    radial-gradient(circle at 60% 80%, color-mix(in srgb, var(--color-accent-3) 8%, transparent) 0 2px, transparent 2px);
+  background-size: 120px 120px, 160px 160px, 140px 140px;
+}
+
+[data-mode="dark"] body::before {
+  opacity: 0.25;
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-preview,
+.sandbox-sticky,
+.section-head,
+.steps-card {
+  animation: fade-up 0.6s ease both;
+}
+
+.hero-preview { animation-delay: 0.1s; }
+.sandbox-sticky { animation-delay: 0.15s; }
+
+.gradient-text {
+  background: linear-gradient(
+    120deg,
+    var(--color-primary),
+    var(--color-accent-2),
+    var(--color-accent-3)
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 8s linear infinite;
+}
+
+.section-band {
+  padding: var(--space-6);
+  border-radius: calc(var(--radius-lg) + 0.25rem);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--color-primary) 8%, var(--color-surface)), var(--color-surface));
+  border: 1px solid color-mix(in srgb, var(--color-primary) 18%, var(--color-border));
+  box-shadow: var(--shadow-md);
+}
+
+.contact-cta .contact-card {
+  background:
+    linear-gradient(135deg, var(--color-primary), color-mix(in srgb, var(--color-accent-2) 70%, var(--color-primary)));
+  color: #fff;
+  border: none;
+  box-shadow: var(--shadow-lg);
+}
+
+.contact-cta .contact-card h2,
+.contact-cta .contact-card p {
+  color: #fff;
+}
+
+.contact-cta .contact-card p {
+  opacity: 0.92;
+}
+
+.contact-cta .btn-secondary {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.contact-cta .btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.my-list-section .my-list-card {
+  background:
+    linear-gradient(160deg, color-mix(in srgb, var(--color-accent-3) 12%, var(--color-surface)), var(--color-surface));
+  border: 2px solid color-mix(in srgb, var(--color-primary) 25%, var(--color-border));
+}

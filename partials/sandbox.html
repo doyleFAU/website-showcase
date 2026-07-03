@@ -1,0 +1,39 @@
+<aside class="sandbox-panel" id="sandbox">
+  <div class="sandbox-sticky">
+    <h2>Pick your style</h2>
+    <p class="sandbox-note">Tap an option below. The whole page updates so you can see how it feels.</p>
+
+    <div class="control-group">
+      <span class="control-label">Choose your colors <span class="option-count">50 options</span></span>
+      <div class="pick-grid pick-grid-scroll" id="theme-picker"></div>
+      <select id="theme-select" class="visually-hidden" aria-hidden="true" tabindex="-1"></select>
+    </div>
+
+    <div class="control-group">
+      <span class="control-label">Choose your fonts <span class="option-count">32 options</span></span>
+      <div class="pick-grid pick-grid-fonts pick-grid-scroll" id="font-picker"></div>
+      <select id="font-select" class="visually-hidden" aria-hidden="true" tabindex="-1"></select>
+    </div>
+
+    <div class="control-group">
+      <span class="control-label">Light or dark background?</span>
+      <div class="mode-toggle">
+        <button type="button" class="mode-btn is-active" data-mode-btn="light" aria-pressed="true">Light</button>
+        <button type="button" class="mode-btn" data-mode-btn="dark" aria-pressed="false">Dark</button>
+      </div>
+      <select id="mode-select" class="visually-hidden" aria-hidden="true" tabindex="-1">
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+    </div>
+
+    <select id="radius-select" class="visually-hidden" aria-hidden="true" tabindex="-1">
+      <option value="soft">Soft rounded</option>
+    </select>
+    <input type="checkbox" id="toggle-shadows" checked hidden>
+    <input type="checkbox" id="toggle-animations" checked hidden>
+    <input type="checkbox" id="toggle-gradients" checked hidden>
+
+    <button class="btn btn-secondary btn-block" type="button" id="reset-sandbox">Start over</button>
+  </div>
+</aside>

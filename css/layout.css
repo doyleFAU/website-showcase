@@ -1,0 +1,22 @@
+.container {
+  width: min(var(--container), calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+.toolkit-shell {
+  display: grid;
+  grid-template-columns: var(--sidebar) minmax(0, 1fr);
+  gap: var(--space-6);
+  width: min(calc(var(--container) + var(--sidebar) + 3rem), calc(100% - 2rem));
+  margin: 0 auto var(--space-8);
+}
+
+.showcase-content {
+  min-width: 0;
+}
+
+@media (max-width: 960px) {
+  .toolkit-shell {
+    grid-template-columns: 1fr;
+  }
+}

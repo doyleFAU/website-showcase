@@ -1,0 +1,81 @@
+
+.type-grid-large {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.type-card[data-font-demo="modern"] .type-sample-heading,
+.type-card[data-font-demo="modern"] .type-sample-body { font-family: "Inter", sans-serif; }
+.type-card[data-font-demo="editorial"] .type-sample-heading { font-family: "Fraunces", serif; }
+.type-card[data-font-demo="editorial"] .type-sample-body { font-family: "Source Serif 4", serif; }
+.type-card[data-font-demo="classic"] .type-sample-heading { font-family: "Playfair Display", serif; }
+.type-card[data-font-demo="classic"] .type-sample-body { font-family: "DM Sans", sans-serif; }
+.type-card[data-font-demo="startup"] .type-sample-heading,
+.type-card[data-font-demo="startup"] .type-sample-body { font-family: "Space Grotesk", sans-serif; }
+.type-card[data-font-demo="friendly"] .type-sample-heading,
+.type-card[data-font-demo="friendly"] .type-sample-body { font-family: "Nunito", sans-serif; }
+.type-card[data-font-demo="professional"] .type-sample-heading { font-family: "Merriweather", serif; }
+.type-card[data-font-demo="professional"] .type-sample-body { font-family: "Lato", sans-serif; }
+.type-card[data-font-demo="playful"] .type-sample-heading,
+.type-card[data-font-demo="playful"] .type-sample-body { font-family: "Poppins", sans-serif; }
+.type-card[data-font-demo="magazine"] .type-sample-heading { font-family: "Oswald", sans-serif; }
+.type-card[data-font-demo="magazine"] .type-sample-body { font-family: "Roboto", sans-serif; }
+.type-card[data-font-demo="luxury"] .type-sample-heading { font-family: "Cormorant Garamond", serif; }
+.type-card[data-font-demo="luxury"] .type-sample-body { font-family: "Montserrat", sans-serif; }
+.type-card[data-font-demo="tech"] .type-sample-heading,
+.type-card[data-font-demo="tech"] .type-sample-body { font-family: "IBM Plex Sans", sans-serif; }
+.type-card[data-font-demo="coffee"] .type-sample-heading { font-family: "Raleway", sans-serif; }
+.type-card[data-font-demo="coffee"] .type-sample-body { font-family: "Lora", serif; }
+.type-card[data-font-demo="soft"] .type-sample-heading,
+.type-card[data-font-demo="soft"] .type-sample-body { font-family: "Rubik", sans-serif; }
+.type-card[data-font-demo="retro"] .type-sample-heading { font-family: "Libre Baskerville", serif; }
+.type-card[data-font-demo="retro"] .type-sample-body { font-family: "Work Sans", sans-serif; }
+.type-card[data-font-demo="minimal"] .type-sample-heading,
+.type-card[data-font-demo="minimal"] .type-sample-body { font-family: "Manrope", sans-serif; }
+.type-card[data-font-demo="artsy"] .type-sample-heading { font-family: "Abril Fatface", serif; }
+.type-card[data-font-demo="artsy"] .type-sample-body { font-family: "Mulish", sans-serif; }
+.type-card[data-font-demo="urban"] .type-sample-heading { font-family: "Bebas Neue", sans-serif; letter-spacing: 0.04em; }
+.type-card[data-font-demo="urban"] .type-sample-body { font-family: "Open Sans", sans-serif; }
+.type-card[data-font-demo="journal"] .type-sample-heading,
+.type-card[data-font-demo="journal"] .type-sample-body { font-family: "Literata", serif; }
+.type-card[data-font-demo="handwriting"] .type-sample-heading { font-family: "Caveat", cursive; font-size: 1.35rem; }
+.type-card[data-font-demo="handwriting"] .type-sample-body { font-family: "Quicksand", sans-serif; }
+.type-card[data-font-demo="newsroom"] .type-sample-heading { font-family: "Bitter", serif; }
+.type-card[data-font-demo="newsroom"] .type-sample-body { font-family: "Karla", sans-serif; }
+.type-card[data-font-demo="runway"] .type-sample-heading { font-family: "Bodoni Moda", serif; }
+.type-card[data-font-demo="runway"] .type-sample-body { font-family: "Jost", sans-serif; }
+.type-card[data-font-demo="boardroom"] .type-sample-heading { font-family: "Roboto Slab", serif; }
+.type-card[data-font-demo="boardroom"] .type-sample-body { font-family: "Source Sans 3", sans-serif; }
+.type-card[data-font-demo="typewriter"] .type-sample-heading,
+.type-card[data-font-demo="typewriter"] .type-sample-body { font-family: "Special Elite", monospace; }
+.type-card[data-font-demo="signature"] .type-sample-heading { font-family: "Great Vibes", cursive; font-size: 1.35rem; }
+.type-card[data-font-demo="signature"] .type-sample-body { font-family: "Raleway", sans-serif; }
+.type-card[data-font-demo="geometric"] .type-sample-heading,
+.type-card[data-font-demo="geometric"] .type-sample-body { font-family: "Outfit", sans-serif; }
+.type-card[data-font-demo="industrial"] .type-sample-heading { font-family: "Roboto Slab", serif; }
+.type-card[data-font-demo="industrial"] .type-sample-body { font-family: "Roboto", sans-serif; }
+.type-card[data-font-demo="poster"] .type-sample-heading { font-family: "Anton", sans-serif; letter-spacing: 0.04em; }
+.type-card[data-font-demo="poster"] .type-sample-body { font-family: "Roboto Condensed", sans-serif; }
+.type-card[data-font-demo="neo"] .type-sample-heading,
+.type-card[data-font-demo="neo"] .type-sample-body { font-family: "Archivo", sans-serif; }
+.type-card[data-font-demo="botanic"] .type-sample-heading { font-family: "Spectral", serif; }
+.type-card[data-font-demo="botanic"] .type-sample-body { font-family: "Karla", sans-serif; }
+.type-card[data-font-demo="cyber"] .type-sample-heading,
+.type-card[data-font-demo="cyber"] .type-sample-body { font-family: "Exo 2", sans-serif; }
+.type-card[data-font-demo="cottage"] .type-sample-heading { font-family: "Crimson Pro", serif; }
+.type-card[data-font-demo="cottage"] .type-sample-body { font-family: "Nunito Sans", sans-serif; }
+.type-card[data-font-demo="stadium"] .type-sample-heading { font-family: "Barlow Condensed", sans-serif; letter-spacing: 0.02em; }
+.type-card[data-font-demo="stadium"] .type-sample-body { font-family: "Barlow", sans-serif; }
+.type-card[data-font-demo="bubble"] .type-sample-heading { font-family: "Pacifico", cursive; }
+.type-card[data-font-demo="bubble"] .type-sample-body { font-family: "Nunito", sans-serif; }
+
+@media (max-width: 900px) {
+  .type-grid-large {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1100px) {
+  .type-grid-large {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
