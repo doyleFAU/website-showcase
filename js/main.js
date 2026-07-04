@@ -13,6 +13,7 @@ import { initNavigation, loadPartials, initHelpSteps, initBackToTop } from "./mo
 import { initClickSpark } from "./modules/click-spark.js";
 import { initPresets } from "./modules/presets.js";
 import { initIndustry } from "./modules/industry.js";
+import { initReactBitsEffects, initGlareHover } from "./modules/reactbits-effects.js";
 
 let currentState = { ...DEFAULT_STATE };
 let getSelectedFeatures = () => [];
@@ -43,6 +44,7 @@ async function boot() {
   };
 
   initIndustry(notify);
+  initReactBitsEffects();
   initHelpSteps();
 
   initSandbox(DEFAULT_STATE, STORAGE_KEY, (state) => {
@@ -56,6 +58,7 @@ async function boot() {
   initFontGallery(notify);
   getSelectedFeatures = initChecklist(notify);
   refreshMyList = initMyList(() => currentState, () => getSelectedFeatures()) || (() => {});
+  initGlareHover();
   notify();
 }
 

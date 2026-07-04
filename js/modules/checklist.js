@@ -44,7 +44,7 @@ export function initFontGallery(onChange) {
   gallery.innerHTML = FONT_OPTIONS.map((font) => {
     const sample = FONT_SAMPLES[font.id] || { heading: font.label, body: font.hint };
     return `
-      <button type="button" class="card type-card type-card-btn" data-apply-font="${font.id}" data-font-demo="${font.id}">
+      <button type="button" class="card type-card type-card-btn glare-hover" data-apply-font="${font.id}" data-font-demo="${font.id}" data-glare>
         <h3>${font.label}</h3>
         <p class="type-sample-heading">${sample.heading}</p>
         <p class="type-sample-body">${sample.body}</p>

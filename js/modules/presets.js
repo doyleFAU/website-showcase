@@ -2,6 +2,7 @@ import { createAurora } from "./aurora.js";
 import { createGalaxy } from "./galaxy.js";
 import { createGrainient } from "./grainient.js";
 import { createDarkVeil } from "./dark-veil.js";
+import { createLightRays } from "./light-rays.js";
 
 const PRESET_EFFECTS = {
   tech: (host) =>
@@ -36,6 +37,16 @@ const PRESET_EFFECTS = {
       noiseIntensity: 0.03,
       speed: 0.35,
       warpAmount: 0.15,
+    }),
+  creative: (host) =>
+    createLightRays(host, {
+      raysOrigin: "top-center",
+      raysColor: "#f472b6",
+      raysSpeed: 1,
+      lightSpread: 0.9,
+      rayLength: 1.8,
+      pulsating: true,
+      saturation: 1.1,
     }),
 };
 

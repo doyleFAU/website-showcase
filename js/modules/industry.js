@@ -8,7 +8,7 @@ export function initIndustry(onChange) {
 
   grid.innerHTML = INDUSTRY_PICKS.map(
     (pick) => `
-      <button type="button" class="card industry-card" data-industry="${pick.id}">
+      <button type="button" class="card industry-card glare-hover" data-industry="${pick.id}" data-glare>
         <h3>${pick.label}</h3>
         <p>${pick.hint}</p>
         <span class="card-action">Try this setup</span>
