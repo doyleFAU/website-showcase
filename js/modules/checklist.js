@@ -1,4 +1,5 @@
 import { FEATURE_ITEMS, THEME_OPTIONS, FONT_OPTIONS, THEME_LABELS, FONT_LABELS } from "../config/features.js";
+import { sanitizeFeatureIds } from "./security.js";
 import { escapeHtml } from "./security.js";
 
 const FONT_SAMPLES = {
@@ -100,6 +101,17 @@ export function initChecklist(onChange) {
   updateSummary();
 
   return getSelected;
+}
+
+export function setFeatureSelections(featureIds) {
+  const container = document.getElementById("feature-checklist");
+  if (!container) return;
+
+  const allowed = new Set(sanitizeFeatureIds(featureIds));
+  container.querySelectorAll("input[type='checkbox']").forEach((input) => {
+    input.checked = allowed.has(input.value);
+  });
+  container.dispatchEvent(new Event("change", { bubbles: true }));
 }
 
 export function initVisualPickers(onChange) {
@@ -236,9 +248,13 @@ export function initMyList(getState, getSelectedFeatures) {
       </dl>
       <p class="my-list-label">Add-ons you want:</p>
       <ul class="my-list-features">${featureHtml}</ul>
-      <button class="btn btn-secondary btn-block" type="button" id="print-list">Print my list</button>
+      <div class="my-list-actions">
+        <button class="btn btn-primary btn-block" type="button" id="copy-list">Copy my list</button>
+        <button class="btn btn-secondary btn-block" type="button" id="print-list">Print my list</button>
+      </div>
     `;
 
+    document.getElementById("copy-list")?.addEventListener("click", () => copyList(getState, getSelectedFeatures));
     document.getElementById("print-list")?.addEventListener("click", () => printList(getState, getSelectedFeatures));
   };
 
@@ -246,20 +262,32 @@ export function initMyList(getState, getSelectedFeatures) {
   return render;
 }
 
-function printList(getState, getSelectedFeatures) {
+function buildListText(getState, getSelectedFeatures) {
   const state = getState();
   const features = getSelectedFeatures();
-  const lines = [
+  return [
     "My Website Wish List",
     "====================",
     "",
-    `Colors: ${THEME_LABELS[state.theme]}`,
-    `Fonts: ${FONT_LABELS[state.font]}`,
+    `Colors: ${THEME_LABELS[state.theme] ?? state.theme}`,
+    `Fonts: ${FONT_LABELS[state.font] ?? state.font}`,
     `Look: ${state.mode === "dark" ? "Dark" : "Light"}`,
     "",
     "Add-ons I want:",
-    ...features.map((item) => `- ${item.label}`),
-  ];
+    ...(features.length ? features.map((item) => `- ${item.label}`) : ["- (none checked yet)"]),
+  ].join("\n");
+}
+
+function copyList(getState, getSelectedFeatures) {
+  const text = buildListText(getState, getSelectedFeatures);
+  navigator.clipboard?.writeText(text).then(
+    () => showToast("Copied! Paste into a text or email."),
+    () => showToast("Copy failed — try Print my list instead.")
+  );
+}
+
+function printList(getState, getSelectedFeatures) {
+  const lines = buildListText(getState, getSelectedFeatures).split("\n");
 
   const printWindow = window.open("", "_blank", "noopener,noreferrer,width=640,height=720");
   if (!printWindow) {

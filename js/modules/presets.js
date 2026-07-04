@@ -88,4 +88,12 @@ export function initPresets() {
 
   const initial = panels.find((panel) => panel.classList.contains("is-active"));
   mountEffect(initial);
+
+  activateRef = activate;
+}
+
+let activateRef = null;
+
+export function activatePreset(id) {
+  activateRef?.(id);
 }

@@ -12,6 +12,7 @@ import {
 import { initNavigation, loadPartials, initHelpSteps, initBackToTop } from "./modules/ui.js";
 import { initClickSpark } from "./modules/click-spark.js";
 import { initPresets } from "./modules/presets.js";
+import { initIndustry } from "./modules/industry.js";
 
 let currentState = { ...DEFAULT_STATE };
 let getSelectedFeatures = () => [];
@@ -35,12 +36,14 @@ async function boot() {
   initBackToTop();
   initClickSpark();
   initPresets();
-  initHelpSteps();
 
   const notify = () => {
     syncPickerState();
     refreshMyList();
   };
+
+  initIndustry(notify);
+  initHelpSteps();
 
   initSandbox(DEFAULT_STATE, STORAGE_KEY, (state) => {
     currentState = state;

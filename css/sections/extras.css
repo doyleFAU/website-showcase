@@ -1,0 +1,289 @@
+.industry-grid,
+.extras-grid,
+.pages-grid,
+.starter-grid {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.industry-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.industry-card {
+  text-align: left;
+  cursor: pointer;
+  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+.industry-card:hover,
+.industry-card:focus-visible {
+  border-color: var(--color-primary);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.industry-card h3 {
+  margin-bottom: var(--space-2);
+}
+
+.industry-card p {
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+}
+
+.extras-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.hours-block div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.hours-block div:last-child {
+  border-bottom: none;
+}
+
+.extra-address {
+  margin-top: var(--space-3);
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.map-demo {
+  min-height: 9rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--color-primary) 12%, var(--color-surface-2)), var(--color-surface-2)),
+    repeating-linear-gradient(0deg, transparent, transparent 18px, color-mix(in srgb, var(--color-border) 55%, transparent) 18px, color-mix(in srgb, var(--color-border) 55%, transparent) 19px),
+    repeating-linear-gradient(90deg, transparent, transparent 18px, color-mix(in srgb, var(--color-border) 55%, transparent) 18px, color-mix(in srgb, var(--color-border) 55%, transparent) 19px);
+  display: grid;
+  place-items: center;
+  gap: var(--space-1);
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.map-pin {
+  font-size: 1.5rem;
+}
+
+.team-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.team-card {
+  text-align: center;
+}
+
+.team-avatar {
+  display: block;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  margin: 0 auto var(--space-2);
+  border: 2px solid var(--color-border);
+}
+
+.ta-1 { background: linear-gradient(135deg, #93c5fd, #2563eb); }
+.ta-2 { background: linear-gradient(135deg, #f9a8d4, #be185d); }
+.ta-3 { background: linear-gradient(135deg, #86efac, #059669); }
+
+.team-card strong {
+  display: block;
+}
+
+.team-card span {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.social-row,
+.trust-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.social-chip,
+.trust-badge {
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 20%, var(--color-border));
+  background: var(--color-surface-2);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.pages-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.page-card h3 {
+  margin-bottom: var(--space-2);
+}
+
+.starter-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.starter-card {
+  position: relative;
+}
+
+.starter-card.featured {
+  border-color: var(--color-primary);
+  box-shadow: 0 12px 30px color-mix(in srgb, var(--color-primary) 20%, transparent);
+}
+
+.starter-price {
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: var(--space-3);
+}
+
+.starter-card ul {
+  margin-bottom: 0;
+}
+
+.cta-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-primary) 10%, var(--color-surface));
+  border: 1px solid color-mix(in srgb, var(--color-primary) 20%, var(--color-border));
+}
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+  text-align: center;
+}
+
+.stats-row strong {
+  display: block;
+  font-size: 1.75rem;
+  margin-bottom: var(--space-1);
+}
+
+.stats-row span {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.testimonial-alt blockquote {
+  color: var(--color-text);
+}
+
+.my-list-actions {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.contact-tips {
+  margin: var(--space-4) 0;
+  padding-left: 1.2rem;
+  color: var(--color-text-muted);
+}
+
+.contact-tips li {
+  margin-bottom: var(--space-2);
+}
+
+.preset-home--fitness {
+  background: linear-gradient(160deg, #111827 55%, #7f1d1d);
+  color: #f9fafb;
+  font-family: "Barlow", "Oswald", system-ui, sans-serif;
+}
+
+.preset-home--fitness .preset-nav a {
+  color: #fca5a5;
+  font-family: "Barlow", system-ui, sans-serif;
+}
+
+.preset-home--fitness .preset-kicker {
+  color: #f87171;
+}
+
+.preset-home--fitness .preset-btn--primary {
+  background: #ef4444;
+  color: #fff;
+}
+
+.preset-home--fitness .preset-btn--ghost {
+  color: #fecaca;
+}
+
+.preset-home--fitness .preset-stats div {
+  border-color: rgba(248, 113, 113, 0.25);
+  background: rgba(17, 24, 39, 0.65);
+}
+
+.preset-home--restaurant {
+  background: linear-gradient(180deg, #1c1917, #292524);
+  color: #fafaf9;
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+.preset-home--restaurant .preset-nav a,
+.preset-home--restaurant .preset-lead,
+.preset-home--restaurant .preset-feature span {
+  font-family: "Montserrat", system-ui, sans-serif;
+}
+
+.preset-home--restaurant .preset-nav a {
+  color: #d6d3d1;
+}
+
+.preset-home--restaurant .preset-kicker {
+  color: #fbbf24;
+}
+
+.preset-home--restaurant .preset-btn--primary {
+  background: linear-gradient(135deg, #fbbf24, #d97706);
+  color: #1c1917;
+}
+
+.preset-home--restaurant .preset-feature {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(251, 191, 36, 0.2);
+}
+
+@media (max-width: 900px) {
+  .industry-grid,
+  .extras-grid,
+  .pages-grid,
+  .starter-grid,
+  .team-row,
+  .stats-row {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-strip {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1100px) {
+  .industry-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .extras-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
