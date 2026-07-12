@@ -91,6 +91,11 @@ code {
   max-width: 42rem;
 }
 
+.showcase-content .lead {
+  margin-inline: auto;
+  text-align: center;
+}
+
 .section {
   margin-bottom: var(--space-8);
 }
@@ -98,6 +103,12 @@ code {
 .section-head {
   margin-bottom: var(--space-5);
   max-width: 42rem;
+}
+
+.showcase-content .section-head,
+.sandbox-wrap .section-head {
+  margin-inline: auto;
+  text-align: center;
 }
 
 .section-head h2 {
@@ -127,6 +138,12 @@ code {
 .section-note {
   color: var(--color-text-muted);
   margin-bottom: var(--space-4);
+}
+
+.showcase-content .section-note {
+  max-width: 42rem;
+  margin-inline: auto;
+  text-align: center;
 }
 
 .help-error {

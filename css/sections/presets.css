@@ -6,17 +6,24 @@
   padding-bottom: var(--space-1);
 }
 
+.showcase-content .preset-tabs {
+  justify-content: center;
+}
+
 .preset-tab {
   border: 1px solid color-mix(in srgb, var(--color-primary) 25%, var(--color-border));
   background: var(--color-surface);
   color: var(--color-text);
   border-radius: 999px;
-  padding: 0.55rem 1rem;
+  padding: 0.55rem 0.95rem;
+  min-height: 2.65rem;
   font: inherit;
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
   cursor: pointer;
-  transition: background var(--transition), border-color var(--transition), transform var(--transition);
+  transition: background var(--transition), border-color var(--transition), transform var(--transition), box-shadow var(--transition);
 }
 
 .preset-tab:hover {
@@ -28,6 +35,7 @@
   background: linear-gradient(135deg, var(--color-primary), color-mix(in srgb, var(--color-accent-2) 65%, var(--color-primary)));
   color: #fff;
   border-color: transparent;
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--color-primary) 35%, transparent);
 }
 
 .preset-panels {
@@ -101,7 +109,17 @@
 .galaxy-container,
 .grainient-container,
 .darkveil-container,
-.aurora-container {
+.aurora-container,
+.plasma-container,
+.iridescence-container,
+.threads-container,
+.waves-container,
+.particles-container,
+.prism-container,
+.dot-grid-container,
+.grid-motion-container,
+.liquid-chrome-container,
+.faulty-terminal-container {
   width: 100%;
   height: 100%;
 }
@@ -115,7 +133,9 @@
 .preset-nav,
 .preset-hero,
 .preset-features,
-.preset-portfolio {
+.preset-portfolio,
+.preset-stats,
+.preset-trust {
   position: relative;
   z-index: 1;
 }
@@ -221,9 +241,31 @@
 }
 
 .preset-caption {
-  margin-top: var(--space-3);
-  color: var(--color-text-muted);
+  margin-top: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 18%, var(--color-border));
+  border-left: 4px solid var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 6%, var(--color-surface));
+  box-shadow: var(--shadow-sm);
+}
+
+.preset-caption-label {
+  display: block;
+  margin-bottom: var(--space-1);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.preset-caption p {
+  margin: 0;
+  color: var(--color-text);
   font-size: 0.95rem;
+  line-height: 1.55;
+  max-width: 65ch;
 }
 
 /* Modern Tech preset */
@@ -457,6 +499,263 @@
   color: #e2e8f0;
 }
 
+/* Fitness Gym preset */
+.preset-home--fitness {
+  background: #0c0a09;
+  color: #fafaf9;
+  font-family: "Barlow", "Oswald", system-ui, sans-serif;
+}
+
+.preset-home--fitness .preset-nav a {
+  color: #d6d3d1;
+}
+
+.preset-home--fitness .preset-kicker {
+  color: #fb923c;
+}
+
+.preset-home--fitness .preset-btn--primary {
+  background: linear-gradient(135deg, #f97316, #ef4444);
+  color: #fff;
+}
+
+.preset-home--fitness .preset-btn--ghost {
+  color: #e7e5e4;
+}
+
+.preset-home--fitness .preset-stats div {
+  border-color: rgba(249, 115, 22, 0.35);
+  background: rgba(12, 10, 9, 0.65);
+}
+
+.preset-home--fitness .preset-stats strong {
+  color: #fdba74;
+  font-family: "Barlow", system-ui, sans-serif;
+}
+
+/* Fine Dining preset */
+.preset-home--restaurant {
+  background: #1c1917;
+  color: #fafaf9;
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+.preset-home--restaurant .preset-nav a,
+.preset-home--restaurant .preset-lead,
+.preset-home--restaurant .preset-feature span {
+  font-family: "Source Sans 3", system-ui, sans-serif;
+}
+
+.preset-home--restaurant .preset-nav a {
+  color: #d6d3d1;
+}
+
+.preset-home--restaurant .preset-kicker {
+  color: #fbbf24;
+}
+
+.preset-home--restaurant .preset-btn--primary {
+  background: linear-gradient(135deg, #b45309, #7f1d1d);
+  color: #fff;
+}
+
+.preset-home--restaurant .preset-feature {
+  background: rgba(28, 25, 23, 0.72);
+  border-color: rgba(251, 191, 36, 0.22);
+  backdrop-filter: blur(8px);
+}
+
+/* Travel preset */
+.preset-home--travel {
+  background: #0c1222;
+  color: #ecfeff;
+  font-family: "Outfit", system-ui, sans-serif;
+}
+
+.preset-home--travel .preset-nav a { color: #a5f3fc; }
+.preset-home--travel .preset-kicker { color: #22d3ee; }
+.preset-home--travel .preset-btn--primary {
+  background: linear-gradient(135deg, #06b6d4, #2563eb);
+  color: #fff;
+}
+.preset-home--travel .preset-btn--ghost { color: #e0f2fe; }
+.preset-home--travel .preset-stats div {
+  border-color: rgba(34, 211, 238, 0.3);
+  background: rgba(12, 18, 34, 0.65);
+}
+
+/* Online Learning preset */
+.preset-home--education {
+  background: #f5f3ff;
+  color: #312e81;
+  font-family: "DM Sans", system-ui, sans-serif;
+}
+
+.preset-home--education .preset-nav a { color: #5b21b6; }
+.preset-home--education .preset-kicker { color: #7c3aed; }
+.preset-home--education .preset-btn--primary {
+  background: #6366f1;
+  color: #fff;
+}
+.preset-home--education .preset-feature {
+  background: rgba(255, 255, 255, 0.75);
+  border-color: rgba(99, 102, 241, 0.2);
+}
+
+/* Photography preset */
+.preset-home--photography {
+  background: #0a0a0a;
+  color: #fafafa;
+  font-family: "Playfair Display", Georgia, serif;
+}
+
+.preset-home--photography .preset-nav a,
+.preset-home--photography .preset-lead {
+  font-family: "Lato", system-ui, sans-serif;
+}
+.preset-home--photography .preset-nav a { color: #d4d4d4; }
+.preset-home--photography .preset-kicker { color: #fbbf24; }
+.preset-home--photography .preset-btn--primary {
+  background: #fbbf24;
+  color: #171717;
+}
+
+/* Music & Events preset */
+.preset-home--music {
+  background: #09090b;
+  color: #fafafa;
+  font-family: "Bebas Neue", "Oswald", system-ui, sans-serif;
+}
+
+.preset-home--music .preset-effect-host {
+  opacity: 0.68;
+}
+
+.preset-home--music .preset-effect-host::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(9, 9, 11, 0.22) 0%,
+    rgba(9, 9, 11, 0.5) 55%,
+    rgba(9, 9, 11, 0.68) 100%
+  );
+}
+
+.preset-home--music .preset-nav a,
+.preset-home--music .preset-lead,
+.preset-home--music .preset-trust {
+  font-family: "Rubik", system-ui, sans-serif;
+}
+.preset-home--music .preset-nav a { color: #d4d4d8; }
+.preset-home--music .preset-kicker { color: #e879f9; }
+.preset-home--music .preset-btn--primary {
+  background: linear-gradient(135deg, #d946ef, #6366f1);
+  color: #fff;
+}
+.preset-home--music .preset-btn--ghost { color: #e4e4e7; }
+.preset-home--music .preset-trust span {
+  border-color: rgba(217, 70, 239, 0.35);
+  background: rgba(9, 9, 11, 0.7);
+}
+
+/* Boutique Shop preset */
+.preset-home--ecommerce {
+  background: linear-gradient(180deg, #faf5ff, #fdf4ff);
+  color: #3b0764;
+  font-family: "Poppins", system-ui, sans-serif;
+}
+
+.preset-home--ecommerce .preset-nav a { color: #7e22ce; }
+.preset-home--ecommerce .preset-kicker { color: #a855f7; }
+.preset-home--ecommerce .preset-btn--primary {
+  background: #9333ea;
+  color: #fff;
+}
+.preset-photo--shop {
+  min-height: 11rem;
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(135deg, rgba(168, 85, 247, 0.35), rgba(147, 51, 234, 0.15)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Crect fill='%23e9d5ff' width='120' height='120'/%3E%3Crect x='28' y='40' width='64' height='48' rx='6' fill='%23c084fc'/%3E%3C/svg%3E");
+  background-size: cover;
+  border: 1px solid rgba(147, 51, 234, 0.2);
+}
+.preset-home--ecommerce .preset-feature {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(147, 51, 234, 0.15);
+}
+
+/* Builders preset */
+.preset-home--construction {
+  background: #1c1917;
+  color: #fafaf9;
+  font-family: "Barlow Condensed", "Barlow", system-ui, sans-serif;
+}
+
+.preset-home--construction .preset-nav a,
+.preset-home--construction .preset-lead,
+.preset-home--construction .preset-stats span {
+  font-family: "Barlow", system-ui, sans-serif;
+}
+.preset-home--construction .preset-nav a { color: #d6d3d1; }
+.preset-home--construction .preset-kicker { color: #fb923c; }
+.preset-home--construction .preset-btn--primary {
+  background: linear-gradient(135deg, #ea580c, #c2410c);
+  color: #fff;
+}
+.preset-home--construction .preset-btn--ghost { color: #e7e5e4; }
+.preset-home--construction .preset-stats div {
+  border-color: rgba(249, 115, 22, 0.35);
+  background: rgba(28, 25, 23, 0.75);
+}
+.preset-home--construction .preset-stats strong { color: #fdba74; }
+
+/* Medical preset */
+.preset-home--medical {
+  background: #f0fdfa;
+  color: #134e4a;
+  font-family: "Source Sans 3", system-ui, sans-serif;
+}
+
+.preset-home--medical .preset-logo {
+  font-family: "Merriweather", Georgia, serif;
+}
+.preset-home--medical .preset-nav a { color: #0f766e; }
+.preset-home--medical .preset-kicker { color: #14b8a6; }
+.preset-home--medical .preset-btn--primary {
+  background: #0d9488;
+  color: #fff;
+}
+.preset-home--medical .preset-feature {
+  background: rgba(255, 255, 255, 0.82);
+  border-color: rgba(13, 148, 136, 0.2);
+  backdrop-filter: blur(8px);
+}
+
+/* Community / Nonprofit preset */
+.preset-home--nonprofit {
+  background: #052e16;
+  color: #ecfdf5;
+  font-family: "Nunito", system-ui, sans-serif;
+}
+
+.preset-home--nonprofit .preset-nav a { color: #bbf7d0; }
+.preset-home--nonprofit .preset-kicker { color: #4ade80; }
+.preset-home--nonprofit .preset-btn--primary {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #052e16;
+}
+.preset-home--nonprofit .preset-btn--ghost { color: #d1fae5; }
+.preset-home--nonprofit .preset-trust span {
+  border-color: rgba(74, 222, 128, 0.35);
+  background: rgba(5, 46, 22, 0.75);
+  color: #ecfdf5;
+}
+
 .preset-trust {
   display: flex;
   flex-wrap: wrap;
@@ -475,10 +774,20 @@
 
 @media (max-width: 900px) {
   .preset-features,
-  .preset-portfolio,
-  .preset-hero--split,
   .preset-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .preset-portfolio {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .preset-hero--split {
     grid-template-columns: 1fr;
+  }
+
+  .preset-photo {
+    min-height: 9rem;
   }
 
   .preset-nav nav {
@@ -488,11 +797,115 @@
 
   .preset-home {
     min-height: auto;
+    padding: var(--space-4);
+    gap: var(--space-4);
+  }
+
+  .preset-hero h3 {
+    max-width: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .preset-tabs {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    padding: var(--space-1) var(--space-1) var(--space-3);
+    margin-inline: calc(-1 * var(--space-2));
+    padding-inline: var(--space-2);
+    mask-image: linear-gradient(90deg, transparent, #000 1rem, #000 calc(100% - 1rem), transparent);
+  }
+
+  .showcase-content .preset-tabs {
+    justify-content: flex-start;
+  }
+
+  .preset-tab {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
   }
 }
 
 @media (max-width: 640px) {
-  .preset-nav .preset-btn--primary {
+  .preset-features,
+  .preset-portfolio,
+  .preset-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .preset-nav {
+    gap: var(--space-2);
+  }
+
+  .preset-nav .preset-logo {
+    flex: 1 1 100%;
+    font-size: 1.05rem;
+  }
+
+  .preset-nav nav {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: var(--space-2);
+    overflow-x: auto;
+    padding-bottom: var(--space-1);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .preset-nav nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .preset-nav a {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .preset-nav .preset-btn--primary,
+  .preset-actions .preset-btn {
     width: 100%;
+    text-align: center;
+  }
+
+  .preset-actions {
+    flex-direction: column;
+  }
+
+  .preset-browser {
+    border-radius: var(--radius-md);
+  }
+
+  .preset-browser-bar {
+    padding: var(--space-2) var(--space-3);
+  }
+
+  .preset-browser-bar p {
+    font-size: 0.72rem;
+  }
+
+  .preset-caption {
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .preset-caption p {
+    font-size: 0.9rem;
+  }
+
+  .preset-feature,
+  .preset-stats div {
+    padding: var(--space-3);
+  }
+
+  .preset-kicker {
+    font-size: 0.7rem;
+  }
+
+  .preset-lead {
+    font-size: 0.9rem;
   }
 }

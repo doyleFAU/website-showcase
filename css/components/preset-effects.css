@@ -1,0 +1,28 @@
+.threads-container,
+.particles-container,
+.liquid-chrome-container,
+.faulty-terminal-container,
+.waves-container,
+.prism-container,
+.dot-grid-container,
+.grid-motion-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.threads-container canvas,
+.particles-container canvas,
+.liquid-chrome-container canvas,
+.faulty-terminal-container canvas,
+.waves-container canvas,
+.prism-container canvas,
+.dot-grid-container canvas,
+.grid-motion-container canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

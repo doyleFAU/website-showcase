@@ -1,0 +1,28 @@
+/* Adapted from @react-bits/ShinyText-JS-CSS — https://reactbits.dev */
+
+.shiny-text {
+  display: inline-block;
+  background-image: linear-gradient(
+    var(--shiny-spread, 120deg),
+    var(--shiny-color, #2563eb) 0%,
+    var(--shiny-color, #2563eb) 35%,
+    var(--shiny-shine, #ffffff) 50%,
+    var(--shiny-color, #2563eb) 65%,
+    var(--shiny-color, #2563eb) 100%
+  );
+  background-size: 200% auto;
+  background-position: 150% center;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shiny-text {
+    background-position: 0% center;
+    -webkit-text-fill-color: unset;
+    color: var(--shiny-color, var(--color-primary));
+    background-image: none;
+  }
+}

@@ -1,4 +1,5 @@
 import { FEATURE_ITEMS, THEME_OPTIONS, FONT_OPTIONS, THEME_LABELS, FONT_LABELS } from "../config/features.js";
+import { FEATURES_STORAGE_KEY } from "../config/state.js";
 import { sanitizeFeatureIds } from "./security.js";
 import { escapeHtml } from "./security.js";
 
@@ -67,16 +68,32 @@ export function initFontGallery(onChange) {
   });
 }
 
+export function saveFeatureSelections(featureIds) {
+  localStorage.setItem(FEATURES_STORAGE_KEY, JSON.stringify(sanitizeFeatureIds(featureIds)));
+}
+
+export function loadFeatureSelections() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(FEATURES_STORAGE_KEY) || "null");
+    return saved ? sanitizeFeatureIds(saved) : null;
+  } catch {
+    return null;
+  }
+}
+
 export function initChecklist(onChange) {
   const container = document.getElementById("feature-checklist");
   const summary = document.getElementById("checklist-summary");
   if (!container || !summary) return () => [];
 
+  const saved = loadFeatureSelections();
+
   container.innerHTML = FEATURE_ITEMS.map((item) => {
-    const checked = item.defaultOn ? "checked" : "";
+    const checked = saved ? saved.includes(item.id) : item.defaultOn;
+    const checkedAttr = checked ? "checked" : "";
     return `
       <label class="checklist-item">
-        <input type="checkbox" value="${item.id}" data-label="${item.label}" ${checked}>
+        <input type="checkbox" value="${item.id}" data-label="${item.label}" ${checkedAttr}>
         <span>${item.label}</span>
       </label>
     `;
@@ -94,6 +111,7 @@ export function initChecklist(onChange) {
       selected.length === 1
         ? "You picked 1 thing for your website. Nice start!"
         : `You picked ${selected.length} things for your website. Great list!`;
+    saveFeatureSelections(selected.map((item) => item.id));
     onChange?.();
   };
 
@@ -105,11 +123,13 @@ export function initChecklist(onChange) {
 
 export function setFeatureSelections(featureIds) {
   const container = document.getElementById("feature-checklist");
+  const allowed = sanitizeFeatureIds(featureIds);
+  saveFeatureSelections(allowed);
   if (!container) return;
 
-  const allowed = new Set(sanitizeFeatureIds(featureIds));
+  const allowedSet = new Set(allowed);
   container.querySelectorAll("input[type='checkbox']").forEach((input) => {
-    input.checked = allowed.has(input.value);
+    input.checked = allowedSet.has(input.value);
   });
   container.dispatchEvent(new Event("change", { bubbles: true }));
 }
@@ -250,12 +270,10 @@ export function initMyList(getState, getSelectedFeatures) {
       <ul class="my-list-features">${featureHtml}</ul>
       <div class="my-list-actions">
         <button class="btn btn-primary btn-block" type="button" id="copy-list">Copy my list</button>
-        <button class="btn btn-secondary btn-block" type="button" id="print-list">Print my list</button>
       </div>
     `;
 
     document.getElementById("copy-list")?.addEventListener("click", () => copyList(getState, getSelectedFeatures));
-    document.getElementById("print-list")?.addEventListener("click", () => printList(getState, getSelectedFeatures));
   };
 
   render();
@@ -265,6 +283,14 @@ export function initMyList(getState, getSelectedFeatures) {
 function buildListText(getState, getSelectedFeatures) {
   const state = getState();
   const features = getSelectedFeatures();
+  return formatWishList(state, features);
+}
+
+export function formatWishList(state, features) {
+  const featureLines = features.length
+    ? features.map((item) => `- ${typeof item === "string" ? item : item.label}`)
+    : ["- (none checked yet)"];
+
   return [
     "My Website Wish List",
     "====================",
@@ -274,7 +300,7 @@ function buildListText(getState, getSelectedFeatures) {
     `Look: ${state.mode === "dark" ? "Dark" : "Light"}`,
     "",
     "Add-ons I want:",
-    ...(features.length ? features.map((item) => `- ${item.label}`) : ["- (none checked yet)"]),
+    ...featureLines,
   ].join("\n");
 }
 
@@ -282,26 +308,8 @@ function copyList(getState, getSelectedFeatures) {
   const text = buildListText(getState, getSelectedFeatures);
   navigator.clipboard?.writeText(text).then(
     () => showToast("Copied! Paste into a text or email."),
-    () => showToast("Copy failed — try Print my list instead.")
+    () => showToast("Copy failed — please try again.")
   );
-}
-
-function printList(getState, getSelectedFeatures) {
-  const lines = buildListText(getState, getSelectedFeatures).split("\n");
-
-  const printWindow = window.open("", "_blank", "noopener,noreferrer,width=640,height=720");
-  if (!printWindow) {
-    showToast("Please allow pop-ups to print your list.");
-    return;
-  }
-
-  const pre = printWindow.document.createElement("pre");
-  pre.style.cssText = "font-family: sans-serif; padding: 24px; line-height: 1.6; white-space: pre-wrap;";
-  pre.textContent = lines.join("\n");
-  printWindow.document.body.appendChild(pre);
-  printWindow.document.close();
-  printWindow.focus();
-  printWindow.print();
 }
 
 function showToast(message) {

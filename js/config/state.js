@@ -1,4 +1,5 @@
-export const STORAGE_KEY = "website-explorer-choices";
+export const STORAGE_KEY = "vervio-choices";
+export const FEATURES_STORAGE_KEY = "vervio-features";
 
 export const DEFAULT_STATE = {
   theme: "ocean",

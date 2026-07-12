@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://website-showcase-lemon.vercel.app/sitemap.xml

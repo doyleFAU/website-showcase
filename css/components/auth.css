@@ -1,0 +1,132 @@
+.auth-slot {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-left: auto;
+}
+
+.auth-user {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  max-width: 7rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.auth-page .auth-wrap {
+  max-width: 42rem;
+}
+
+.auth-wrap--narrow {
+  max-width: 28rem;
+}
+
+.auth-forgot-panel {
+  margin-top: var(--space-4);
+}
+
+.auth-text-btn {
+  justify-self: start;
+  padding-left: 0;
+}
+
+.auth-cta-row {
+  margin-top: var(--space-4);
+}
+
+.auth-grid {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+.auth-card {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.auth-card h2 {
+  font-size: 1.1rem;
+}
+
+.auth-card label {
+  display: grid;
+  gap: var(--space-2);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.auth-card input {
+  font-weight: 400;
+}
+
+.password-wrap {
+  position: relative;
+  display: block;
+}
+
+.password-wrap input {
+  width: 100%;
+  padding-right: 2.75rem;
+}
+
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 0.55rem;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.password-toggle:hover {
+  color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+}
+
+.password-toggle[aria-pressed="true"] .icon-eye {
+  display: none;
+}
+
+.password-toggle[aria-pressed="true"] .icon-eye-off {
+  display: block;
+}
+
+.password-toggle .icon-eye-off {
+  display: none;
+}
+
+.auth-hint {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.auth-message {
+  min-height: 1.25rem;
+  color: var(--color-danger);
+  font-size: 0.9rem;
+}
+
+.auth-message.is-info {
+  color: var(--color-success);
+}
+
+@media (max-width: 860px) {
+  .auth-slot {
+    order: 3;
+    width: 100%;
+    justify-content: flex-end;
+    margin-left: 0;
+  }
+}

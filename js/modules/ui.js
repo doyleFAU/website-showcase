@@ -1,12 +1,28 @@
 import { isAllowedPartial, isSafeHashSelector } from "./security.js";
+import { HASH_TO_PAGE } from "../config/routes.js";
+import { showToast } from "./checklist.js";
+
+function currentPage() {
+  const path = window.location.pathname.split("/").pop();
+  return path || "index.html";
+}
+
+function navigateToTarget(selector) {
+  if (!isSafeHashSelector(selector)) return;
+
+  const target = document.querySelector(selector);
+  if (target) {
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    return;
+  }
+
+  const page = HASH_TO_PAGE[selector];
+  if (page) window.location.href = page;
+}
 
 export function initNavigation() {
   document.querySelectorAll("[data-scroll]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const selector = button.dataset.scroll;
-      if (!isSafeHashSelector(selector)) return;
-      document.querySelector(selector)?.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
+    button.addEventListener("click", () => navigateToTarget(button.dataset.scroll));
   });
 
   const menuButton = document.getElementById("menu-toggle");
@@ -20,30 +36,17 @@ export function initNavigation() {
     link.addEventListener("click", () => nav.classList.remove("is-open"));
   });
 
-  const links = [...document.querySelectorAll(".site-nav a")];
-  const sections = links
-    .map((link) => {
-      const id = link.getAttribute("href")?.replace("#", "");
-      const section = id ? document.getElementById(id) : null;
-      return section ? { link, section } : null;
-    })
-    .filter(Boolean);
+  if (!nav) return;
 
-  if (!sections.length) return;
+  const page = currentPage();
+  nav.querySelectorAll("a").forEach((link) => {
+    const href = link.getAttribute("href");
+    if (!href || href.startsWith("#")) return;
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        links.forEach((link) => link.classList.remove("is-active"));
-        const match = sections.find(({ section }) => section === entry.target);
-        match?.link.classList.add("is-active");
-      });
-    },
-    { rootMargin: "-35% 0px -55% 0px", threshold: 0 }
-  );
-
-  sections.forEach(({ section }) => observer.observe(section));
+    const isHome = page === "index.html" && (href === "index.html" || href === "./");
+    const isMatch = href === page || href.endsWith(`/${page}`);
+    link.classList.toggle("is-active", isHome || isMatch);
+  });
 }
 
 export function initBackToTop() {
@@ -70,6 +73,7 @@ export async function loadPartials() {
   const slots = document.querySelectorAll("[data-partial]");
   await Promise.all(
     [...slots].map(async (slot) => {
+      if (slot.innerHTML.trim()) return;
       const url = slot.dataset.partial;
       if (!isAllowedPartial(url)) throw new Error(`Blocked partial path: ${url}`);
       const response = await fetch(url, { credentials: "same-origin" });
@@ -81,10 +85,13 @@ export async function loadPartials() {
 
 export function initHelpSteps() {
   document.querySelectorAll("[data-step]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const selector = button.dataset.step;
-      if (!isSafeHashSelector(selector)) return;
-      document.querySelector(selector)?.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
+    button.addEventListener("click", () => navigateToTarget(button.dataset.step));
   });
+}
+
+export function showPendingToast() {
+  const message = sessionStorage.getItem("showcase-toast");
+  if (!message) return;
+  sessionStorage.removeItem("showcase-toast");
+  showToast(message);
 }

@@ -1,0 +1,51 @@
+# Vervio
+
+> Free website planning app — explore fonts, colors, homepage layouts, and features before you hire a builder.
+
+Vervio (https://website-showcase-lemon.vercel.app) helps small businesses plan their first website. It is not a website builder; it is a free website planning tool with live previews.
+
+## Website planning — South Florida
+
+Vervio is used for website planning in Boca Raton, Delray Beach, Fort Lauderdale, West Palm Beach, and across South Florida. Local business owners plan homepage layouts, colors, fonts, and features before hiring a developer or agency.
+
+## Key pages
+
+- Home: https://website-showcase-lemon.vercel.app/
+- FAQ (includes Boca Raton website planning): https://website-showcase-lemon.vercel.app/faq.html
+- Website planning in Boca Raton & South Florida: https://website-showcase-lemon.vercel.app/local.html
+- Planning guide: https://website-showcase-lemon.vercel.app/planning-guide.html
+- 16 homepage ideas: https://website-showcase-lemon.vercel.app/homepage-ideas.html
+- Homepage layouts: https://website-showcase-lemon.vercel.app/presets.html
+- Quick start by business type: https://website-showcase-lemon.vercel.app/industry.html
+- Colors and fonts: https://website-showcase-lemon.vercel.app/style.html
+- Feature wish list: https://website-showcase-lemon.vercel.app/features.html
+- Tutorial: https://website-showcase-lemon.vercel.app/tutorial.html
+
+## What Vervio does
+
+- Website planning with live color and font preview
+- 16 homepage layout presets (tech, local business, restaurant, fitness, medical, nonprofit, travel, photography, and more)
+- Business-type quick start
+- Website feature checklist saved to My List
+- Step-by-step planning tutorial
+
+## Common searches Vervio answers
+
+- Free website planning tool
+- Website planning app
+- Website planning in Boca Raton
+- Website planning South Florida
+- Plan my website before hiring a designer
+- Preview homepage layouts free
+
+## Who it is for
+
+Small business owners, startups, and local shops who want to plan a website before hiring a developer or using Wix, Squarespace, or WordPress.
+
+## Pricing
+
+Free. No login required.
+
+## Sitemap
+
+https://website-showcase-lemon.vercel.app/sitemap.xml

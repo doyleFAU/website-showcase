@@ -3,20 +3,16 @@
   margin-inline: auto;
 }
 
-.toolkit-shell {
-  display: grid;
-  grid-template-columns: var(--sidebar) minmax(0, 1fr);
-  gap: var(--space-6);
-  width: min(calc(var(--container) + var(--sidebar) + 3rem), calc(100% - 2rem));
-  margin: 0 auto var(--space-8);
+.sandbox-wrap {
+  margin-bottom: var(--space-6);
+}
+
+.sandbox-panel {
+  width: 100%;
+  max-width: 100%;
+  margin-inline: auto;
 }
 
 .showcase-content {
-  min-width: 0;
-}
-
-@media (max-width: 960px) {
-  .toolkit-shell {
-    grid-template-columns: 1fr;
-  }
+  margin-bottom: var(--space-8);
 }

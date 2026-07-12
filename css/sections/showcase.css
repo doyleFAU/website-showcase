@@ -60,6 +60,32 @@
   height: 5rem;
 }
 
+.palette-chip-color.token-primary {
+  background-color: var(--color-primary);
+}
+
+.palette-chip-color.token-bg {
+  background-color: var(--color-bg);
+  box-shadow: inset 0 0 0 1px var(--color-border);
+}
+
+.palette-chip-color.token-surface {
+  background-color: var(--color-surface);
+  box-shadow: inset 0 0 0 1px var(--color-border);
+}
+
+.palette-chip-color.token-text {
+  background-color: var(--color-text);
+}
+
+.palette-chip-color.token-success {
+  background-color: var(--color-success);
+}
+
+.palette-chip-color.token-danger {
+  background-color: var(--color-danger);
+}
+
 .palette-chip-meta {
   padding: var(--space-3);
   font-size: 0.85rem;

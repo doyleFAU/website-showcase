@@ -27,7 +27,17 @@ export function initIndustry(onChange) {
     setFeatureSelections(pick.features);
     onChange?.();
 
-    document.getElementById("presets")?.scrollIntoView({ behavior: "smooth", block: "start" });
-    showToast(`Loaded ideas for ${pick.label}. Tweak anything you like!`);
+    const presets = document.getElementById("presets");
+    if (presets) {
+      presets.scrollIntoView({ behavior: "smooth", block: "start" });
+      showToast(`Loaded ideas for ${pick.label}. Tweak anything you like!`);
+      return;
+    }
+
+    sessionStorage.setItem(
+      "showcase-toast",
+      `Loaded ideas for ${pick.label}. Tweak anything you like!`
+    );
+    window.location.href = `presets.html?preset=${encodeURIComponent(pick.preset)}`;
   });
 }

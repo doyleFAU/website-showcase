@@ -1,3 +1,4 @@
+import { initShinyText } from "./shiny-text.js";
 import { createLightRays } from "./light-rays.js";
 import { animationsEnabled } from "./effect-host.js";
 
@@ -110,6 +111,7 @@ export function initReactBitsEffects() {
   initCountUp();
   initLogoLoops();
   initLightRaysDemos();
+  initShinyText();
 }
 
 export function destroyLightRaysDemo() {

@@ -15,15 +15,45 @@
 }
 
 .logo {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem 1.15rem;
+  border-radius: 999px;
+  text-decoration: none;
+  white-space: nowrap;
+  background: color-mix(in srgb, var(--color-surface) 88%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 22%, var(--color-border));
+  box-shadow: 0 2px 12px color-mix(in srgb, var(--color-primary) 12%, transparent);
+  transition: transform var(--transition), box-shadow var(--transition);
+  flex-shrink: 0;
+}
+
+.logo:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 18px color-mix(in srgb, var(--color-primary) 22%, transparent);
+}
+
+.logo-text {
   font-family: var(--font-heading);
   font-weight: 800;
-  font-size: 1.1rem;
-  text-decoration: none;
-  background: linear-gradient(120deg, var(--color-primary), var(--color-accent-2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  white-space: nowrap;
+  font-size: clamp(1.55rem, 3.8vw, 2.1rem);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  filter: drop-shadow(0 1px 8px color-mix(in srgb, var(--color-primary) 25%, transparent));
+}
+
+.logo.electric-frame::before {
+  inset: -1px;
+  padding: 1px;
+  animation-duration: 4s;
+}
+
+.logo.electric-frame::after {
+  inset: -6px;
+  opacity: 0.35;
+  filter: blur(12px);
 }
 
 .menu-toggle {

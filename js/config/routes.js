@@ -1,0 +1,32 @@
+export const PAGES = {
+  home: "index.html",
+  style: "style.html",
+  presets: "presets.html",
+  industry: "industry.html",
+  typography: "typography.html",
+  colors: "colors.html",
+  layouts: "layouts.html",
+  effects: "effects.html",
+  extras: "extras.html",
+  features: "features.html",
+  myList: "my-list.html",
+  tutorial: "tutorial.html",
+  faq: "faq.html",
+  local: "local.html",
+  planningGuide: "planning-guide.html",
+  homepageIdeas: "homepage-ideas.html",
+};
+
+export const HASH_TO_PAGE = {
+  "#sandbox": PAGES.style,
+  "#presets": PAGES.presets,
+  "#industry": PAGES.industry,
+  "#typography": PAGES.typography,
+  "#colors": PAGES.colors,
+  "#layouts": PAGES.layouts,
+  "#effects": PAGES.effects,
+  "#extras": PAGES.extras,
+  "#features": PAGES.features,
+  "#my-list": PAGES.myList,
+  "#contact": PAGES.features,
+};

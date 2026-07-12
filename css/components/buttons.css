@@ -70,6 +70,10 @@
   gap: var(--space-3);
 }
 
+.showcase-content .btn-row {
+  justify-content: center;
+}
+
 .hero-actions,
 .preview-actions {
   display: flex;
