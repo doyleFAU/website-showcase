@@ -5,6 +5,7 @@
   "scripts": {
     "config": "node scripts/generate-supabase-config.mjs",
     "build:pages": "node scripts/build-pages.mjs",
-    "build": "npm run config && npm run build:pages"
+    "build": "npm run config && npm run build:pages",
+    "workflow": "node scripts/show-workflow.mjs"
   }
 }
