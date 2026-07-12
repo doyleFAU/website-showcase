@@ -1,0 +1,10 @@
+{
+  "name": "website-showcase",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "config": "node scripts/generate-supabase-config.mjs",
+    "build:pages": "node scripts/build-pages.mjs",
+    "build": "npm run config && npm run build:pages"
+  }
+}
