@@ -15,7 +15,7 @@
 }
 
 .auth-page .auth-wrap {
-  max-width: 42rem;
+  max-width: 48rem;
 }
 
 .auth-wrap--narrow {
@@ -26,11 +26,6 @@
   margin-top: var(--space-4);
 }
 
-.auth-text-btn {
-  justify-self: start;
-  padding-left: 0;
-}
-
 .auth-cta-row {
   margin-top: var(--space-4);
 }
@@ -38,27 +33,61 @@
 .auth-grid {
   display: grid;
   gap: var(--space-4);
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
 }
 
 .auth-card {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: var(--space-3);
+  height: 100%;
 }
 
 .auth-card h2 {
   font-size: 1.1rem;
+  margin: 0;
 }
 
 .auth-card label {
   display: grid;
   gap: var(--space-2);
+  width: 100%;
   font-weight: 600;
   font-size: 0.9rem;
 }
 
 .auth-card input {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.65rem 0.75rem;
+  font: inherit;
   font-weight: 400;
+  color: var(--color-text);
+  background: var(--color-surface);
+}
+
+.auth-card input:focus {
+  outline: 2px solid color-mix(in srgb, var(--color-primary) 45%, transparent);
+  outline-offset: 1px;
+}
+
+.auth-card .btn {
+  justify-content: center;
+  text-align: center;
+}
+
+.auth-card .btn-block {
+  width: 100%;
+}
+
+.auth-card .btn-sm {
+  min-height: 2.35rem;
+}
+
+.auth-card .auth-hint {
+  margin-top: auto;
 }
 
 .password-wrap {
@@ -120,4 +149,10 @@
 
 .auth-message.is-info {
   color: var(--color-success);
+}
+
+@media (max-width: 720px) {
+  .auth-grid {
+    grid-template-columns: 1fr;
+  }
 }
