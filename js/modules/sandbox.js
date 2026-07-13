@@ -1,5 +1,6 @@
 import { sanitizeState } from "./security.js";
 import { DEFAULT_STATE } from "../config/state.js";
+import { refreshShinyTextColors } from "./shiny-text.js";
 
 export function applySandboxState(state) {
   const root = document.documentElement;
@@ -11,6 +12,8 @@ export function applySandboxState(state) {
   root.dataset.shadows = state.shadows ? "on" : "off";
   root.dataset.animations = state.animations ? "on" : "off";
   root.dataset.gradients = state.gradients ? "on" : "off";
+
+  refreshShinyTextColors();
 }
 
 export function readControls(state) {

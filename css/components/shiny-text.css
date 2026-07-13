@@ -2,13 +2,14 @@
 
 .shiny-text {
   display: inline-block;
+  --shiny-color: color-mix(in srgb, var(--color-primary) 55%, var(--color-accent-2));
   background-image: linear-gradient(
     var(--shiny-spread, 120deg),
-    var(--shiny-color, #2563eb) 0%,
-    var(--shiny-color, #2563eb) 35%,
+    var(--shiny-color) 0%,
+    var(--shiny-color) 35%,
     var(--shiny-shine, #ffffff) 50%,
-    var(--shiny-color, #2563eb) 65%,
-    var(--shiny-color, #2563eb) 100%
+    var(--shiny-color) 65%,
+    var(--shiny-color) 100%
   );
   background-size: 200% auto;
   background-position: 150% center;

@@ -1,7 +1,8 @@
 import { FEATURE_ITEMS, THEME_OPTIONS, FONT_OPTIONS, THEME_LABELS, FONT_LABELS } from "../config/features.js";
-import { FEATURES_STORAGE_KEY } from "../config/state.js";
-import { sanitizeFeatureIds } from "./security.js";
+import { DEFAULT_STATE, FEATURES_STORAGE_KEY, STORAGE_KEY } from "../config/state.js";
+import { sanitizeFeatureIds, sanitizeState } from "./security.js";
 import { escapeHtml } from "./security.js";
+import { applySandboxState, loadState, saveState } from "./sandbox.js";
 
 const FONT_SAMPLES = {
   modern: { heading: "Clean and trustworthy", body: "Great for local businesses and services." },
@@ -58,12 +59,20 @@ export function initFontGallery(onChange) {
     card.addEventListener("click", () => {
       const font = card.dataset.applyFont;
       const select = document.getElementById("font-select");
-      if (!select) return;
-      select.value = font;
-      select.dispatchEvent(new Event("change"));
-      syncPickerState();
-      onChange?.();
-      showToast("Font updated! Check the preview above.");
+
+      if (select) {
+        select.value = font;
+        select.dispatchEvent(new Event("change", { bubbles: true }));
+        syncPickerState();
+        onChange?.();
+        return;
+      }
+
+      const saved = loadState(DEFAULT_STATE, STORAGE_KEY);
+      const next = sanitizeState({ ...saved, font }, DEFAULT_STATE);
+      applySandboxState(next);
+      saveState(next, STORAGE_KEY);
+      onChange?.(next);
     });
   });
 }
@@ -167,10 +176,23 @@ export function initVisualPickers(onChange) {
     themeGrid.addEventListener("click", (event) => {
       const button = event.target.closest("[data-theme]");
       if (!button) return;
-      document.getElementById("theme-select").value = button.dataset.theme;
-      document.getElementById("theme-select").dispatchEvent(new Event("change"));
+      const theme = button.dataset.theme;
+      const select = document.getElementById("theme-select");
+
+      if (select) {
+        select.value = theme;
+        select.dispatchEvent(new Event("change", { bubbles: true }));
+        syncPickerState();
+        onChange?.();
+        return;
+      }
+
+      const saved = loadState(DEFAULT_STATE, STORAGE_KEY);
+      const next = sanitizeState({ ...saved, theme }, DEFAULT_STATE);
+      applySandboxState(next);
+      saveState(next, STORAGE_KEY);
       syncPickerState();
-      onChange?.();
+      onChange?.(next);
     });
   }
 
@@ -187,10 +209,23 @@ export function initVisualPickers(onChange) {
     fontGrid.addEventListener("click", (event) => {
       const button = event.target.closest("[data-font]");
       if (!button) return;
-      document.getElementById("font-select").value = button.dataset.font;
-      document.getElementById("font-select").dispatchEvent(new Event("change"));
+      const font = button.dataset.font;
+      const select = document.getElementById("font-select");
+
+      if (select) {
+        select.value = font;
+        select.dispatchEvent(new Event("change", { bubbles: true }));
+        syncPickerState();
+        onChange?.();
+        return;
+      }
+
+      const saved = loadState(DEFAULT_STATE, STORAGE_KEY);
+      const next = sanitizeState({ ...saved, font }, DEFAULT_STATE);
+      applySandboxState(next);
+      saveState(next, STORAGE_KEY);
       syncPickerState();
-      onChange?.();
+      onChange?.(next);
     });
   }
 

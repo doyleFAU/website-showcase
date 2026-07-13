@@ -101,7 +101,10 @@ async function boot() {
   initPalette();
   initVisualPickers(notify);
   initModeButtons(notify);
-  initFontGallery(notify);
+  initFontGallery((state) => {
+    if (state) currentState = state;
+    notify();
+  });
   getSelectedFeatures = initChecklist(notify);
   refreshMyList = initMyList(() => currentState, () => getSelectedFeatures()) || (() => {});
   initGlareHover();

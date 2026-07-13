@@ -56,6 +56,8 @@ export async function loadCloudPlan(userId) {
     .from("user_plans")
     .select("choices, features")
     .eq("user_id", userId)
+    .order("updated_at", { ascending: false })
+    .limit(1)
     .maybeSingle();
 
   if (error) throw error;
@@ -67,21 +69,65 @@ export async function loadCloudPlan(userId) {
   };
 }
 
+async function resolveAuthUser() {
+  const supabase = getClient();
+  if (!supabase) return null;
+
+  const { data: userData, error: userError } = await supabase.auth.getUser();
+  if (!userError && userData.user) return userData.user;
+
+  const { data: sessionData, error: sessionError } = await supabase.auth.refreshSession();
+  if (sessionError || !sessionData.session?.user) return null;
+
+  return sessionData.session.user;
+}
+
 export async function saveCloudPlan(userId, { choices, features }) {
   const supabase = getClient();
   if (!supabase || !userId) return;
 
-  const { error } = await supabase.from("user_plans").upsert(
-    {
-      user_id: userId,
-      choices: sanitizeState(choices, DEFAULT_STATE),
-      features: sanitizeFeatureIds(features),
-      updated_at: new Date().toISOString(),
-    },
-    { onConflict: "user_id" }
-  );
+  const user = await resolveAuthUser();
+  if (!user || user.id !== userId) {
+    throw new Error("Not signed in");
+  }
 
-  if (error) throw error;
+  const payload = {
+    choices: sanitizeState(choices, DEFAULT_STATE),
+    features: sanitizeFeatureIds(features),
+    updated_at: new Date().toISOString(),
+  };
+
+  const { data: existing, error: readError } = await supabase
+    .from("user_plans")
+    .select("id")
+    .eq("user_id", user.id)
+    .maybeSingle();
+
+  if (readError) throw readError;
+
+  if (existing) {
+    const { error } = await supabase.from("user_plans").update(payload).eq("user_id", user.id);
+    if (error) throw error;
+    return;
+  }
+
+  const { error: insertError } = await supabase
+    .from("user_plans")
+    .insert({ ...payload, user_id: user.id });
+
+  if (!insertError) return;
+
+  // Another device may have created the row between read and insert.
+  if (insertError.code === "23505") {
+    const { error: updateError } = await supabase
+      .from("user_plans")
+      .update(payload)
+      .eq("user_id", user.id);
+    if (updateError) throw updateError;
+    return;
+  }
+
+  throw insertError;
 }
 
 export function scheduleCloudSave(getSnapshot) {
@@ -89,9 +135,17 @@ export function scheduleCloudSave(getSnapshot) {
   window.clearTimeout(saveTimer);
   saveTimer = window.setTimeout(async () => {
     try {
-      await saveCloudPlan(currentUser.id, getSnapshot());
-    } catch {
-      showToast("Could not save to your account. Trying again soon.");
+      const user = await resolveAuthUser();
+      if (!user) {
+        currentUser = null;
+        renderAuthSlot();
+        return;
+      }
+
+      currentUser = user;
+      await saveCloudPlan(user.id, getSnapshot());
+    } catch (error) {
+      console.error("Cloud save failed:", error);
     }
   }, 900);
 }

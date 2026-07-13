@@ -16,6 +16,8 @@ function hexToRgba(hex, opacity = 0.4) {
 export function initGlareHover() {
   document.querySelectorAll("[data-glare]").forEach((el) => {
     el.classList.add("glare-hover");
+    if (el.classList.contains("logo")) return;
+
     const primary = getComputedStyle(document.documentElement).getPropertyValue("--color-primary").trim();
     el.style.setProperty("--gh-angle", el.dataset.glareAngle || "-45deg");
     el.style.setProperty("--gh-duration", `${el.dataset.glareDuration || 650}ms`);

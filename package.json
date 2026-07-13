@@ -6,6 +6,7 @@
     "config": "node scripts/generate-supabase-config.mjs",
     "build:pages": "node scripts/build-pages.mjs",
     "build": "npm run config && npm run build:pages",
+    "serve": "python3 -m http.server 8090",
     "workflow": "node scripts/show-workflow.mjs"
   }
 }

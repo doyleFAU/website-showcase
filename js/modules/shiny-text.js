@@ -5,14 +5,10 @@
 
 import { animationsEnabled } from "./effect-host.js";
 
-function readThemeColors() {
-  const root = getComputedStyle(document.documentElement);
-  const primary = root.getPropertyValue("--color-primary").trim() || "#2563eb";
-  const accent = root.getPropertyValue("--color-accent-2").trim() || "#8b5cf6";
-  return {
-    color: `color-mix(in srgb, ${primary} 55%, ${accent})`,
-    shine: "#ffffff",
-  };
+export function refreshShinyTextColors() {
+  document.querySelectorAll(".shiny-text").forEach((el) => {
+    el.style.removeProperty("--shiny-color");
+  });
 }
 
 function mountShinyText(el) {
@@ -27,9 +23,7 @@ function mountShinyText(el) {
   const spread = Number(el.dataset.shinySpread || 125);
   const pauseOnHover = el.dataset.shinyPauseHover !== "false";
 
-  const { color, shine } = readThemeColors();
-  el.style.setProperty("--shiny-color", color);
-  el.style.setProperty("--shiny-shine", shine);
+  el.style.setProperty("--shiny-shine", "#ffffff");
   el.style.setProperty("--shiny-spread", `${spread}deg`);
 
   let elapsed = 0;

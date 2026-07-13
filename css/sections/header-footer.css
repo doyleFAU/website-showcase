@@ -26,8 +26,16 @@
   background: color-mix(in srgb, var(--color-surface) 88%, transparent);
   border: 1px solid color-mix(in srgb, var(--color-primary) 22%, var(--color-border));
   box-shadow: 0 2px 12px color-mix(in srgb, var(--color-primary) 12%, transparent);
-  transition: transform var(--transition), box-shadow var(--transition);
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition),
+    background var(--transition);
   flex-shrink: 0;
+}
+
+.logo.glare-hover {
+  --gh-rgba: color-mix(in srgb, var(--color-primary) 35%, transparent);
 }
 
 .logo:hover {
@@ -42,6 +50,21 @@
   letter-spacing: -0.04em;
   line-height: 1;
   filter: drop-shadow(0 1px 8px color-mix(in srgb, var(--color-primary) 25%, transparent));
+  transition:
+    font-family var(--transition),
+    letter-spacing var(--transition),
+    filter var(--transition);
+}
+
+html[data-font="handwriting"] .logo-text,
+html[data-font="signature"] .logo-text,
+html[data-font="bubble"] .logo-text,
+html[data-font="poster"] .logo-text,
+html[data-font="urban"] .logo-text,
+html[data-font="stadium"] .logo-text,
+html[data-font="artsy"] .logo-text {
+  font-weight: 400;
+  letter-spacing: 0.02em;
 }
 
 .logo.electric-frame::before {
