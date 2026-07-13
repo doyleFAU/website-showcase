@@ -48,6 +48,126 @@ There is no Node server at runtime. The site is static files plus client-side Ja
 
 ---
 
+## Architecture & workflow
+
+Plain-text map of how Vervio fits together. Run `npm run workflow` in the terminal for a colorized version.
+
+```
+╔══════════════════════════════════════════════════════════════════════╗
+║  VERVIO — architecture & workflow                                    ║
+║  https://website-showcase-lemon.vercel.app                           ║
+╚══════════════════════════════════════════════════════════════════════╝
+
+▸ VISITOR JOURNEY
+
+  ┌─────────────┐
+  │  Homepage   │  index.html
+  └──────┬──────┘
+         │
+         ├──────────────► tutorial.html      Start Here (3-min tour)
+         ├──────────────► style.html         Pick colors & fonts
+         ├──────────────► presets.html       16 homepage layouts
+         ├──────────────► industry.html      Quick start by business
+         ├──────────────► features.html      Add-ons wish list
+         └──────────────► my-list.html        Saved picks summary
+
+  SEO pages: faq.html · local.html · planning-guide.html · homepage-ideas.html
+
+
+▸ RUNTIME (browser)
+
+  ┌──────────────┐     loadPartials()      ┌─────────────────┐
+  │  *.html      │ ──────────────────────► │  partials/*.html │
+  └──────┬───────┘                         └─────────────────┘
+         │
+         │  js/main.js boots modules
+         ▼
+  ┌──────────────┐   apply state    ┌──────────────────────────┐
+  │  sandbox.js  │ ───────────────► │  <html data-theme/font> │
+  └──────┬───────┘                  └──────────────────────────┘
+         │
+         ├─► checklist.js   wish list + font gallery
+         ├─► presets.js     homepage demos
+         ├─► tutorial.js    guided tour
+         └─► auth.js        login + cloud save (if configured)
+
+
+▸ AUTH FLOW (optional — logged-in users)
+
+  ┌──────────────┐         ┌──────────────────┐
+  │  login.html  │ ──────► │  Supabase Auth   │
+  └──────┬───────┘         └────────┬─────────┘
+         │                          │
+         │ sign up / log in           │ JWT session
+         ▼                          ▼
+  ┌──────────────┐         ┌──────────────────┐
+  │ Browse Vervio│ ◄────── │  user_plans      │
+  └──────┬───────┘         └────────┬─────────┘
+         │                          │
+         │ change colors, fonts,    │ auto-save (choices + features)
+         │ check add-ons            │
+         ▼                          ▼
+  ┌──────────────┐         ┌──────────────────┐
+  │ localStorage │         │  Cloud sync      │
+  │ (offline too)│         │  cross-device    │
+  └──────────────┘         └──────────────────┘
+
+  Forgot password: login.html → email link → reset-password.html
+
+
+▸ DATA PER USER
+
+  user_plans (Supabase)              localStorage (no login required)
+  ├── user_id   → auth.users       ├── vervio-choices  → style picks
+  ├── choices   → theme, font…      └── vervio-features → wish list
+  ├── features  → add-on IDs
+  └── updated_at
+
+
+▸ BUILD & DEPLOY PIPELINE
+
+  YOUR MACHINE                         VERCEL (production)
+  ────────────                         ───────────────────
+
+  .env                                 Vercel env vars
+      │                                (SUPABASE_URL, ANON_KEY)
+      ▼                                        │
+  npm run build                                ▼
+      │                                npm run build (on deploy)
+      ├─► generate js/config/supabase.js       ├─► generate supabase.js
+      └─► build-pages.mjs → *.html             └─► build-pages.mjs → *.html
+              │                                        │
+              ▼                                        ▼
+      git push ──► GitHub ──► auto-deploy ──► website-showcase-lemon.vercel.app
+
+
+▸ PROJECT FILE MAP
+
+  website-showcase/
+  │
+  ├── .env                    ← secrets (local only, gitignored)
+  ├── partials/               ← source HTML (edit these)
+  ├── js/
+  │   ├── main.js             ← app entry
+  │   ├── config/supabase.js  ← generated at build
+  │   └── modules/            ← auth, sandbox, presets, checklist…
+  ├── scripts/
+  │   ├── build-pages.mjs     ← HTML + SEO generation
+  │   ├── generate-supabase-config.mjs
+  │   └── show-workflow.mjs   ← terminal diagram (npm run workflow)
+  ├── css/                    ← themes, fonts, components
+  └── *.html                  ← built output (regenerate with npm run build)
+
+
+▸ SECURITY
+
+  Browser ──► anon key only ──► Supabase ──► RLS (users see own row only)
+
+  Never in frontend or GitHub: service_role key · Stripe secrets · .env
+```
+
+---
+
 ## Requirements
 
 - **Node.js** 18+ (for build scripts only)
