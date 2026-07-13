@@ -160,13 +160,13 @@ function renderAuthSlot() {
     const label = currentUser.email?.split("@")[0] || "Account";
     slot.innerHTML = `
       <span class="auth-user" title="${currentUser.email || ""}">${label}</span>
-      <button class="btn btn-ghost btn-sm" type="button" id="auth-sign-out">Log out</button>
+      <button class="btn header-login" type="button" id="auth-sign-out">Log out</button>
     `;
     slot.querySelector("#auth-sign-out")?.addEventListener("click", signOut);
     return;
   }
 
-  slot.innerHTML = `<a class="btn btn-secondary btn-sm" href="login.html">Log in</a>`;
+  slot.innerHTML = `<a class="btn header-login" href="login.html">Log in</a>`;
 }
 
 async function syncSessionPlan(onPlanApplied) {
