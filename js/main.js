@@ -17,6 +17,7 @@ import { initReactBitsEffects, initGlareHover } from "./modules/reactbits-effect
 import { initTutorial } from "./modules/tutorial.js";
 import { applySandboxState, loadState, syncControls } from "./modules/sandbox.js";
 import { initAuth, initLoginPage, initResetPasswordPage, scheduleCloudSave } from "./modules/auth.js";
+import { initContactForm } from "./modules/contact.js";
 import { loadFeatureSelections } from "./modules/checklist.js";
 
 let currentState = { ...DEFAULT_STATE };
@@ -107,6 +108,7 @@ async function boot() {
   });
   getSelectedFeatures = initChecklist(notify);
   refreshMyList = initMyList(() => currentState, () => getSelectedFeatures()) || (() => {});
+  initContactForm();
   initGlareHover();
   notify();
 }

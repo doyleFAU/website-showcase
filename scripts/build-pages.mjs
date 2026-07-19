@@ -142,7 +142,8 @@ const pages = [
     description:
       "Free website planning app — explore fonts, colors, 16 homepage layouts, and features. Plan your site before you hire a builder. No coding required.",
     main: `${inlinePartialSlot("partials/hero.html")}
-${inlinePartialSlot("partials/home-seo.html")}`,
+${inlinePartialSlot("partials/home-seo.html")}
+${inlinePartialSlot("partials/contact-form.html")}`,
     schemas: baseSchemas,
   },
   {

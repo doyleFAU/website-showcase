@@ -100,6 +100,100 @@ body::before {
   background: rgba(255, 255, 255, 0.25);
 }
 
+.contact-cta {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.contact-form-card {
+  max-width: 36rem;
+  margin-inline: auto;
+  text-align: left;
+}
+
+.contact-form-card .eyebrow {
+  margin-bottom: var(--space-2);
+}
+
+.contact-form-card h2 {
+  margin-bottom: var(--space-3);
+}
+
+.contact-form-lead {
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-5);
+}
+
+.contact-form {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.contact-form-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.contact-field {
+  display: grid;
+  gap: var(--space-2);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.contact-field em {
+  font-style: normal;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.contact-field input,
+.contact-field textarea {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 0.85rem;
+  font: inherit;
+  font-weight: 400;
+  color: var(--color-text);
+  background: var(--color-surface);
+}
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+  outline: 2px solid color-mix(in srgb, var(--color-primary) 45%, transparent);
+  outline-offset: 1px;
+  border-color: var(--color-primary);
+}
+
+.contact-form-status {
+  min-height: 1.25rem;
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.contact-form-status.is-error {
+  color: var(--color-danger);
+}
+
+.contact-form-status.is-success {
+  color: var(--color-success);
+}
+
+.home-contact .section-head {
+  text-align: center;
+  max-width: 36rem;
+  margin-inline: auto;
+}
+
+.home-contact .contact-form-card {
+  margin-top: var(--space-5);
+}
+
 .my-list-section .my-list-card {
   background:
     linear-gradient(160deg, color-mix(in srgb, var(--color-accent-3) 12%, var(--color-surface)), var(--color-surface));

@@ -28,5 +28,5 @@ export const HASH_TO_PAGE = {
   "#extras": PAGES.extras,
   "#features": PAGES.features,
   "#my-list": PAGES.myList,
-  "#contact": PAGES.features,
+  "#contact": PAGES.home,
 };

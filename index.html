@@ -140,6 +140,59 @@
     </div>
   </div>
 </section></div>
+    <div data-partial="partials/contact-form.html"><section class="section home-contact" id="contact">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Get in touch</p>
+      <h2>Questions or want help planning?</h2>
+      <p>Send a note — your email and message go to us automatically.</p>
+    </div>
+
+    <div class="card contact-form-card" id="contact-form-wrap">
+      <form class="contact-form" id="contact-form" novalidate>
+        <div class="contact-form-honeypot" aria-hidden="true">
+          <label for="contact-company">Company</label>
+          <input id="contact-company" name="company" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <label class="contact-field">
+          <span>Your email</span>
+          <input
+            type="email"
+            name="email"
+            required
+            autocomplete="email"
+            inputmode="email"
+            maxlength="254"
+            placeholder="you@email.com"
+          />
+        </label>
+
+        <label class="contact-field">
+          <span>Name <em>(optional)</em></span>
+          <input type="text" name="name" autocomplete="name" maxlength="80" placeholder="Your name" />
+        </label>
+
+        <label class="contact-field">
+          <span>Message</span>
+          <textarea
+            name="message"
+            rows="4"
+            required
+            maxlength="2000"
+            placeholder="Tell us about your business or what you're trying to plan…"
+          ></textarea>
+        </label>
+
+        <p class="contact-form-status" id="contact-form-status" role="status" aria-live="polite"></p>
+
+        <button class="btn btn-primary btn-block contact-form-submit" type="submit">
+          Send message
+        </button>
+      </form>
+    </div>
+  </div>
+</section></div>
   </main>
 
     <div data-partial="partials/footer.html"><footer class="site-footer">
@@ -150,6 +203,7 @@
       <a href="planning-guide.html">Planning guide</a>
       <a href="homepage-ideas.html">Homepage ideas</a>
       <a href="local.html">Website planning — South Florida</a>
+      <a href="index.html#contact">Contact</a>
       <a href="tutorial.html">Start Here</a>
     </nav>
     <p class="footer-note">Take your time exploring. There is no login, no cost, and nothing to install.</p>
